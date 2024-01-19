@@ -18,7 +18,7 @@ jobs:
     - name: install 7zip
       run: sudo apt-get -qq -y install p7zip-full
     - name: Save the Docker image
-      run: docker save zerotier-planet|gzip > zerotier-planet.tar.gz && 7z a -t7z -mx=9 -p kxiaoyan zerotier-planet.tar.gz.7z zerotier-planet.tar.gz
+      run: docker save zerotier-planet|gzip > zerotier-planet.tar.gz && 7z a -t7z -mx=9  zerotier-planet.tar.gz.7z zerotier-planet.tar.gz
     - name: Upload the Docker image
       uses: actions/upload-artifact@v3
       with:
