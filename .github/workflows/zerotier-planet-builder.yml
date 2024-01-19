@@ -10,15 +10,15 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Edit the planet IP
-      run: sed -i "s/1.1.1.1/${{ secrets.IP }}/g" ./patch/patch.json
+      run: sed -i "s/1.1.1.1/2001:250:3002:5704:2e0:b4ff:fe1d:dab8/g" ./patch/patch.json
     - name: Edit username and password
-      run: sed -i "s/admin/${{ secrets.USERNAME }}/g" ./init.sh && sed -i "s/zero-ui/${{ secrets.PASSWORD }}/g" ./init.sh
+      run: sed -i "s/admin/admin/g" ./init.sh && sed -i "s/zero-ui/kxiaoyan/g" ./init.sh
     - name: Build the Zerotier Planet Docker image
       run: docker build . --file Dockerfile --tag zerotier-planet
     - name: install 7zip
       run: sudo apt-get -qq -y install p7zip-full
     - name: Save the Docker image
-      run: docker save zerotier-planet|gzip > zerotier-planet.tar.gz && 7z a -t7z -mx=9 -p${{ secrets.PASSWORD }} zerotier-planet.tar.gz.7z zerotier-planet.tar.gz
+      run: docker save zerotier-planet|gzip > zerotier-planet.tar.gz && 7z a -t7z -mx=9 -p kxiaoyan zerotier-planet.tar.gz.7z zerotier-planet.tar.gz
     - name: Upload the Docker image
       uses: actions/upload-artifact@v3
       with:
